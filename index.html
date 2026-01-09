@@ -19,13 +19,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.3.0/marked.min.js"></script>
     <style>
       :root {
-          /* Default Light (Eye-Friendly) */
-          --text-primary-light: #1f2937;
-          --bg-primary-light: #f8fafc;
+          /* Default Light (Eye-Friendly) - Slightly warmer/softer than pure white/slate */
+          --text-primary-light: #334155; /* slate-700 - softer than black */
+          --bg-primary-light: #f8fafc;   /* slate-50 */
           
-          /* Default Dark (Eye-Friendly) */
-          --text-primary-dark: #f3f4f6;
-          --bg-primary-dark: #111111; /* Softer than pitch black */
+          /* Default Dark (Eye-Friendly) - Dark Grey/Blueish, not black */
+          --text-primary-dark: #e2e8f0;  /* slate-200 */
+          --bg-primary-dark: #1e293b;    /* slate-800 - Good contrast, low strain */
 
           /* Latte Theme Colors */
           --latte-bg: #fdf6e3;
@@ -35,6 +35,13 @@
           --latte-border: #d3cbb7;
           --latte-accent: #b58900;
           
+          /* Midnight Theme Colors (Very Dark/OLED) */
+          --midnight-bg: #000000;
+          --midnight-bg-secondary: #09090b; /* zinc-950 */
+          --midnight-text: #e4e4e7; /* zinc-200 */
+          --midnight-text-muted: #a1a1aa; /* zinc-400 */
+          --midnight-border: #27272a; /* zinc-800 */
+          
           --text-primary: var(--text-primary-light);
       }
 
@@ -43,24 +50,31 @@
         transition: background-color 0.3s ease, color 0.3s ease;
       }
 
-      /* Dark Theme */
-      html.dark body {
+      /* Dark Theme (Eye Friendly) */
+      html.dark:not(.midnight) body {
         background-color: var(--bg-primary-dark);
         color: var(--text-primary-dark);
       }
 
-      /* Light Theme (Default) */
+      /* Light Theme (Default Eye Friendly) */
       html:not(.dark):not(.latte) body {
         background-color: var(--bg-primary-light);
         color: var(--text-primary-light);
       }
 
-      /* Latte Theme - Aggressive Overrides */
+      /* Latte Theme */
       html.latte body {
         background-color: var(--latte-bg) !important;
         color: var(--latte-text) !important;
       }
       
+      /* Midnight Theme (Very Dark) */
+      html.midnight body {
+        background-color: var(--midnight-bg) !important;
+        color: var(--midnight-text) !important;
+      }
+
+      /* --- Latte Overrides --- */
       html.latte .bg-slate-100, 
       html.latte .bg-slate-50, 
       html.latte .bg-gray-50,
@@ -91,19 +105,50 @@
       html.latte .border-slate-300 {
           border-color: var(--latte-border) !important;
       }
+
+      /* --- Midnight Overrides --- */
+      html.midnight .bg-neutral-900,
+      html.midnight .dark\:bg-neutral-900,
+      html.midnight .bg-slate-900,
+      html.midnight .dark\:bg-slate-900 {
+          background-color: var(--midnight-bg) !important;
+      }
+
+      html.midnight .bg-neutral-800,
+      html.midnight .dark\:bg-neutral-800,
+      html.midnight .bg-slate-800,
+      html.midnight .dark\:bg-slate-800 {
+          background-color: var(--midnight-bg-secondary) !important;
+      }
+      
+      html.midnight .border-neutral-700,
+      html.midnight .dark\:border-neutral-700,
+      html.midnight .border-slate-700,
+      html.midnight .dark\:border-slate-700 {
+          border-color: var(--midnight-border) !important;
+      }
+      
+      html.midnight .text-gray-200,
+      html.midnight .dark\:text-gray-200 {
+          color: var(--midnight-text) !important;
+      }
       
       /* Selection Colors */
       html:not(.dark):not(.latte) ::selection {
         background-color: #cbd5e1; 
         color: #1f2937;
       }
-      html.dark ::selection {
-        background-color: #404040;
-        color: #f9fafb;
+      html.dark:not(.midnight) ::selection {
+        background-color: #475569; /* slate-600 */
+        color: #f1f5f9;
       }
       html.latte ::selection {
           background-color: #d3cbb7;
           color: #5c4b37;
+      }
+      html.midnight ::selection {
+          background-color: #3f3f46; /* zinc-700 */
+          color: #ffffff;
       }
 
       html[lang="en"] body {
@@ -135,15 +180,20 @@
         color: #1e293b;
         border: 1px solid #e2e8f0;
       }
-      html.dark .ai-message-content pre {
-        background-color: #0d1117;
-        color: #c9d1d9;
-        border: 1px solid #30363d;
+      html.dark:not(.midnight) .ai-message-content pre {
+        background-color: #0f172a; /* slate-900 */
+        color: #e2e8f0;
+        border: 1px solid #334155;
       }
       html.latte .ai-message-content pre {
           background-color: #fdf6e3;
           color: #586e75;
           border: 1px solid #d3cbb7;
+      }
+      html.midnight .ai-message-content pre {
+          background-color: #09090b;
+          color: #e4e4e7;
+          border: 1px solid #27272a;
       }
 
       .ai-message-content code { font-family: inherit; }
@@ -168,15 +218,20 @@
           color: #475569;
           border: 1px solid #94a3b8;
       }
-      html.dark .copy-code-button {
-          background-color: #21262d;
-          color: #c9d1d9;
-          border: 1px solid #30363d;
+      html.dark:not(.midnight) .copy-code-button {
+          background-color: #334155;
+          color: #e2e8f0;
+          border: 1px solid #475569;
       }
       html.latte .copy-code-button {
           background-color: #eee8d5;
           color: #657b83;
           border: 1px solid #93a1a1;
+      }
+      html.midnight .copy-code-button {
+          background-color: #27272a;
+          color: #a1a1aa;
+          border: 1px solid #3f3f46;
       }
 
 

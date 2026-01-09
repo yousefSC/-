@@ -397,6 +397,7 @@ const SettingsModal: React.FC<SettingsModalProps> = (props) => {
                                         {value: 'system', label: t('system')}, 
                                         {value: 'light', label: t('light_theme')}, 
                                         {value: 'dark', label: t('dark_theme')},
+                                        {value: 'midnight', label: 'داكن جداً (Midnight)'},
                                         {value: 'latte', label: 'كافى لاتيه (Latte)'}
                                     ]} 
                                     value={settings.theme} 

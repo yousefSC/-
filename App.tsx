@@ -562,13 +562,16 @@ const App: React.FC = () => {
 
   useEffect(() => {
       // Clear all theme classes first
-      document.documentElement.classList.remove('dark', 'latte');
+      document.documentElement.classList.remove('dark', 'latte', 'midnight');
       
       // Apply correct class based on effectiveTheme
       if (effectiveTheme === 'dark') {
           document.documentElement.classList.add('dark');
       } else if (effectiveTheme === 'latte') {
           document.documentElement.classList.add('latte');
+      } else if (effectiveTheme === 'midnight') {
+          // Midnight implies dark mode behavior generally, but with specific overrides.
+          document.documentElement.classList.add('midnight', 'dark');
       }
       // 'light' effectively means no class in this setup (using default light styles)
       
