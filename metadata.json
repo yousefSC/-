@@ -1,0 +1,9 @@
+{
+  "name": "NANOM AI Studio 👋 ",
+  "description": "An bool 2.4.5",
+  "requestFramePermissions": [
+    "microphone",
+    "camera"
+  ],
+  "prompt": ""
+}

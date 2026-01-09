@@ -1,0 +1,55 @@
+
+import React from 'react';
+import { Message, TranslationKey } from '../../types';
+import Icon from '../Icon';
+
+interface ThinkingModalProps {
+  message: Message;
+  onClose: () => void;
+  t: (key: TranslationKey) => string;
+}
+
+const ThinkingModal: React.FC<ThinkingModalProps> = ({ message, onClose, t }) => {
+
+  const renderContent = () => {
+    if (!message.reasoning) {
+      return (
+        <div className="flex flex-col items-center justify-center h-full text-center text-gray-500 dark:text-gray-400 p-4">
+          <Icon name="file-question" className="w-12 h-12 mb-3" />
+          <p className="font-semibold">{t('generatingReasoning')}</p>
+          <p className="text-xs mt-1">{t('pleaseTryAgain')}</p>
+        </div>
+      );
+    }
+    const rawMarkup = (window as any).marked?.parse(message.reasoning || '') || message.reasoning;
+    return <div className="prose prose-sm dark:prose-invert max-w-none ai-message-content p-4" dangerouslySetInnerHTML={{ __html: rawMarkup }}></div>;
+  };
+
+  return (
+    <div 
+      className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-fade-in"
+      onClick={onClose}
+    >
+      <div 
+        className="w-full max-w-2xl bg-white dark:bg-neutral-800 rounded-2xl shadow-xl overflow-hidden flex flex-col max-h-[80vh]"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <header className="p-4 flex justify-between items-center border-b border-slate-200 dark:border-neutral-700 flex-shrink-0">
+          <h3 className="font-bold text-lg flex items-center gap-2 text-gray-800 dark:text-gray-200">
+            <Icon name="brain" className="w-5 h-5 text-purple-500" />
+            {t('thinkingProcess')}
+          </h3>
+          <button onClick={onClose} className="p-1.5 hover:bg-slate-200 dark:hover:bg-neutral-700 rounded-full">
+            <Icon name="x" className="w-5 h-5 text-gray-500" />
+          </button>
+        </header>
+        
+        <main className="flex-1 overflow-y-auto custom-scrollbar">
+            {renderContent()}
+        </main>
+      </div>
+    </div>
+  );
+};
+
+export default ThinkingModal;
