@@ -561,11 +561,17 @@ const App: React.FC = () => {
   }, [settings.language]);
 
   useEffect(() => {
+      // Clear all theme classes first
+      document.documentElement.classList.remove('dark', 'latte');
+      
+      // Apply correct class based on effectiveTheme
       if (effectiveTheme === 'dark') {
           document.documentElement.classList.add('dark');
-      } else {
-          document.documentElement.classList.remove('dark');
+      } else if (effectiveTheme === 'latte') {
+          document.documentElement.classList.add('latte');
       }
+      // 'light' effectively means no class in this setup (using default light styles)
+      
       document.documentElement.lang = effectiveLanguage;
       document.documentElement.dir = effectiveLanguage === 'ar' ? 'rtl' : 'ltr';
   }, [effectiveTheme, effectiveLanguage]);

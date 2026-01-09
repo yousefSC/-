@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useRef, useMemo, useCallback } from 'react';
 import { Settings, TranslationKey, Language, ErrorHandling, Theme, Scale, SettingsTab, SimulationDevice, MemoryItem, ColorScheme, User, ChatSession, CommunityMessage, Shortcut, ShortcutAction, EditorPreference } from '../../types';
 import Icon from '../Icon';
@@ -389,7 +390,18 @@ const SettingsModal: React.FC<SettingsModalProps> = (props) => {
                         <SettingsCard title={t('appearance')}>
                             <div className="space-y-3">
                                 <CustomSelect title={t('language')} t={t} options={[{value: 'system', label: t('system')}, {value: 'en', label: 'English'}, {value: 'ar', label: 'العربية'}]} value={settings.language} onChange={(v) => handleSettingsChange('language', v as Language)} />
-                                <CustomSelect title={t('theme')} t={t} options={[{value: 'system', label: t('system')}, {value: 'light', label: t('light_theme')}, {value: 'dark', label: t('dark_theme')}]} value={settings.theme} onChange={(v) => handleSettingsChange('theme', v as Theme)} />
+                                <CustomSelect 
+                                    title={t('theme')} 
+                                    t={t} 
+                                    options={[
+                                        {value: 'system', label: t('system')}, 
+                                        {value: 'light', label: t('light_theme')}, 
+                                        {value: 'dark', label: t('dark_theme')},
+                                        {value: 'latte', label: 'كافى لاتيه (Latte)'}
+                                    ]} 
+                                    value={settings.theme} 
+                                    onChange={(v) => handleSettingsChange('theme', v as Theme)} 
+                                />
                                 <CustomSelect title={t('scale')} t={t} options={[{value: 'small', label: t('scaleSmall')}, {value: 'medium', label: t('scaleMedium')}, {value: 'large', label: t('scaleLarge')}]} value={settings.scale} onChange={(v) => handleSettingsChange('scale', v as Scale)} />
                             </div>
                         </SettingsCard>

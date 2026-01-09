@@ -1,3 +1,4 @@
+
 import type { GenerateContentResponse } from '@google/genai';
 
 // This is a placeholder for the full GroundingMetadata type if it's complex
@@ -15,7 +16,7 @@ export interface GroundingChunk {
 
 // Basic types
 export type Language = 'ar' | 'en' | 'zh' | 'es' | 'fr' | 'hi' | 'system';
-export type Theme = 'light' | 'dark' | 'system';
+export type Theme = 'light' | 'dark' | 'latte' | 'system';
 export type Scale = 'small' | 'medium' | 'large';
 export type AiModel = 'smooth' | 'pro' | 'agent';
 export type GenerationMode = 'chat' | 'code_generation' | 'javascript_code_generation' | 'android_app_generation' | 'project_generation';
